@@ -54,8 +54,6 @@ const CheckoutForm = ({ cartItems, shippingCost }) => {
       shippingCost: tieneEnvioGratis ? 0 : envio
     };
 
-      console.log('Datos de la orden:', JSON.stringify(orderData, null, 2));
-
       const response = await createOrder(orderData);
       
       if (response) {
