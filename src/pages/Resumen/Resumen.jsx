@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { formatDate } from "../../utils/formatDate";
+import { formatDate } from "../../utils/FormatDate";
 
 import { 
   OrderDetailContainer, 
