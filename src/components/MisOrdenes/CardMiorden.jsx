@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/formatPrice";
-import { formatDate } from "../../utils/formatDate";
+import { formatDate } from "../../utils/FormatDate";
 import { 
   CardMiordenContainerStyles, 
   TextContainerStyles, 
