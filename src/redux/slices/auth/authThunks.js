@@ -42,31 +42,17 @@ export const register = (userData) => async (dispatch) => {
     const response = await registerService(userData);
     const { token, user } = response;
     
-    if (!token) {
-      throw new Error('No se recibió el token de autenticación');
-    }
-    
-    // Guardar el token en el estado y en localStorage
-    dispatch(registerSuccess({ 
-      user: user || null,
-      token: token
-    }));
-    
-    // Si no recibimos el usuario, intentar obtenerlo
-    if (!user) {
-      try { 
-        await dispatch(checkAuth()); 
-      } catch (error) {
-        console.error('Error al obtener el perfil del usuario:', error);
+    if (token) {
+      dispatch(registerSuccess({ user, token }));
+      localStorage.setItem('token', token);  // Guarda en localStorage
+      if (!user) {
+        await dispatch(checkAuth());  // Obtén usuario
       }
     }
     
     return response;
   } catch (error) {
-    dispatch(registerFailure({ 
-      message: error.response?.data?.message || error.message, 
-      details: error.response?.data || null 
-    }));
+    dispatch(registerFailure({ message: error.message }));
     throw error;
   }
 };
